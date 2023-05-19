@@ -27,7 +27,7 @@
 
 #### **Tree**
 ```
-📦scouter-dev
+📦bboradoli-dev
  ┗ 📂01_network
  ┃ ┣ 📂modules                      --> Terraform Modules
  ┃ ┃ ┣ 📂00_vpc
