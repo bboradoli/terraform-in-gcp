@@ -8,9 +8,11 @@
 - 기본 입력 변수항목에 대해서는 "dev.auto.tfvars"를 활용하여 입력값 사용.
 - DNS, Subnet에 대해서는 초기 고정항목으로 사용.
     - 항목 추가에 대해서는 DNS, Subnet 각 위치를 참고하여 추가함.
-        - DNS    : ./01_network/05_dns/dns.tf > Resource항목에 고정된 형태로 항목 정의.
-            > 해당 항목도 Subnet과 같이 상위 1단계 상향 필요(Resource를 변경하지 않는 형태로.)
-        - Subnet : ./04_network_firewall.tf > Suite항목에 고정된 형태로 항목 정의.
+        - DNS    : ./01_network/05_dns/dns.tf
+                  > Resource항목에 고정된 형태로 항목 정의.
+                  > Subnet과 같이 상위 1단계 상향 필요(Resource를 변경하지 않는 형태로.)
+        - Subnet : ./04_network_firewall.tf 
+                  > Suite항목에 고정된 형태로 항목 정의.
         
 ```
 
