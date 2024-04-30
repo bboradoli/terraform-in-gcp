@@ -98,36 +98,11 @@ module "firewall_rules" {
        ]
        deny       = []
        log_config = null
-     },
-
-    {
-       name                    = "${local.pre_fix}-fw-ipa-out-allow"
-       description             = "[${var.project_name}-FW-Rule] - IPA 연동을 위한 Egress 통신 허용"      
-       network                 = "${local.network_path}"
-       direction               = "EGRESS"
-       priority                = "1000"
-       target_tags             = ["${local.pre_fix}-net-ce-common"]
-       source_tags             = null
-       source_service_accounts = null
-       target_service_accounts = null
-       ranges                  = ["34.85.42.35/32", "35.200.48.194/32", "35.245.90.128/32", "35.234.106.238/32", "34.86.86.44/32", "34.107.77.241/32", "34.64.73.246/32", "35.190.24.74/32", "34.84.73.136/32"]
-       allow                   = [
-         {
-           "protocol": "TCP",
-           "ports": ["80", "88", "389", "443", "464", "636", "5044"]
-         },
-         {
-           "protocol": "UDP",
-           "ports": ["88", "123", "464"]
-         }      
-       ]
-       deny       = []
-       log_config = null
-     },     
+     }, 
 
     {
        name                    = "${local.pre_fix}-fw-gw-in-allow-2022"
-       description             = "[${var.project_name}-FW-Rule] - 사업장에서 Gateway VM SSH 접속 Ingress 통신허용"
+       description             = "[${var.project_name}-FW-Rule] - Bastion VM SSH 접속 Ingress 통신허용"
        network                 = "${local.network_path}"
        direction               = "INGRESS"
        priority                = "1000"
@@ -135,53 +110,11 @@ module "firewall_rules" {
        source_tags             = null
        source_service_accounts = null
        target_service_accounts = null
-       ranges                  = ["211.189.57.60/32", "210.94.41.89/32", "58.151.93.21/32", "35.190.238.77/32"]
+       ranges                  = ["211.109.75.122/32", "125.129.85.172/32"]
        allow                   = [
          {
            "protocol": "TCP",
            "ports": ["2022"]
-         }
-       ]
-       deny       = []
-       log_config = null
-     },  
-
-    {
-       name                    = "${local.pre_fix}-fw-dbgw-in-allow-2022"
-       description             = "[${var.project_name}-FW-Rule] - SBC 환경에서 Data Gateway VM SSH 접속 Ingress 통신 허용 (35.190.238.77/32 IPA Webshell)"
-       network                 = "${local.network_path}"
-       direction               = "INGRESS"
-       priority                = "1000"
-       target_tags             = ["${local.pre_fix}-net-ce-gw-data"]
-       source_tags             = null
-       source_service_accounts = null
-       target_service_accounts = null
-       ranges                  = ["211.189.57.60/32", "210.94.41.89/32", "58.151.93.21/32", "35.190.238.77/32"]
-       allow                   = [
-         {
-           "protocol": "TCP",
-           "ports": ["2022"]
-         }
-       ]
-       deny       = []
-       log_config = null
-     },       
-  
-    {
-       name                    = "${local.pre_fix}-fw-ssh-out-allow-20022"
-       description             = "[${var.project_name}-FW-Rule] - Data Gateway VM에서 VM 으로 SSH(20022) Engrss 통신 허용"
-       network                 = "${local.network_path}"
-       direction               = "EGRESS"
-       priority                = "1000"
-       target_tags             = ["${local.pre_fix}-net-ce-common"]
-       source_tags             = []
-       source_service_accounts = null
-       target_service_accounts = null
-       ranges                  = ["172.21.11.0/24"] ## cli subnet 변수값 받아오기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-       allow                   = [
-         {
-           "protocol": "TCP",
-           "ports": ["20022"]
          }
        ]
        deny       = []
@@ -196,27 +129,6 @@ module "firewall_rules" {
        priority                = "1000"
        target_tags             = ["${local.pre_fix}-net-ce-common-cli", "${local.pre_fix}-net-ce-deploy"]
        source_tags             = ["${local.pre_fix}-net-ce-gw-common"]
-       source_service_accounts = null
-       target_service_accounts = null
-       ranges                  = []
-       allow                   = [
-         {
-           "protocol": "TCP",
-           "ports": ["20022"]
-         }
-       ]
-       deny       = []
-       log_config = null
-     },   
-
-    {
-       name                    = "${local.pre_fix}-fw-db-ssh-in-allow-20022"
-       description             = "[${var.project_name}-FW-Rule] - CLI VM 에서 Data Gateway VM의 SSH(20022) Ingress 통신 허용"
-       network                 = "${local.network_path}"
-       direction               = "INGRESS"
-       priority                = "1000"
-       target_tags             = ["${local.pre_fix}-net-ce-data-cli"]
-       source_tags             = ["${local.pre_fix}-net-ce-gw-data"]
        source_service_accounts = null
        target_service_accounts = null
        ranges                  = []

@@ -12,5 +12,5 @@ module "dns" {
   host_project_id = var.host_project_id
   network_url     = local.network_path
 
-  #depends_on = [module.nat]
+  depends_on = [module.nat]
 }
