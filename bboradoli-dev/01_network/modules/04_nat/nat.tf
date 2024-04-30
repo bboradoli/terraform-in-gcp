@@ -34,7 +34,7 @@ resource "google_compute_router_nat" "nat" {
  
  # hardcoding 변수화 필요
   subnetwork {
-    name                    = "sct-d-sub-data-an3-001"
+    name                    = "ksh-d-sub-data-an3-001"
     source_ip_ranges_to_nat = ["172.21.80.0/24"]
   }
   

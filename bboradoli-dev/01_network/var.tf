@@ -95,5 +95,5 @@ locals {
   pre_fix      = "${var.project_name}-${local.division}" # ex : "scouter-d-"
   network_path = "projects/${var.host_project_id}/global/networks/${var.vpc_name}"
   #subnet_url   = "projects/${var.host_project_id}/regions/${var.region}/subnetworks"
-  firewall     = "sangho-host-fw-"
+  firewall     = "${var.project_name}-${local.division}-host-fw-"
 }

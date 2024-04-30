@@ -19,10 +19,10 @@ resource "google_compute_network" "host_vpc_network" {
 }
 
 # Host Project 설정 + Shared VPC
-resource "google_compute_shared_vpc_host_project" "host" {
-  project = var.host_project_id
-depends_on = [google_compute_network.host_vpc_network]
-}
+#resource "google_compute_shared_vpc_host_project" "host" {
+#  project = var.host_project_id
+#depends_on = [google_compute_network.host_vpc_network]
+#}
 
 # Create an IP address
 resource "google_compute_global_address" "private_ip_alloc" {
