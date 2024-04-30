@@ -13,8 +13,8 @@ module "firewall_rules" {
   # Firewall init Fixed
   rules = [
     {
-       name                    = "${local.pre_fix}-host-sec-common-out-deny-all"
-       description             = "[SEC-${var.project_name}-FW-Rule] - VPC의 VM들에서 외부로 나가는 Egress 트래픽 전부 차단(Deny ALL)"
+       name                    = "${local.pre_fix}-fw-common-out-deny-all"
+       description             = "[${var.project_name}-FW-Rule] - VPC의 VM들에서 외부로 나가는 Egress 트래픽 전부 차단(Deny ALL)"
        network                 = "${local.network_path}"
        direction               = "EGRESS"
        priority                = "65534"
@@ -34,8 +34,8 @@ module "firewall_rules" {
      },
 
     {
-       name                    = "${local.pre_fix}-host-sec-internal-out-allow"
-       description             = "[SEC-${var.project_name}-FW-Rule] - VPC의 VM 간 및 GCP 내부 서비스 VM 간 Internal 통신을 위한 Egress 트래픽 허용"
+       name                    = "${local.pre_fix}-fw-internal-out-allow"
+       description             = "[${var.project_name}-FW-Rule] - VPC의 VM 간 및 GCP 내부 서비스 VM 간 Internal 통신을 위한 Egress 트래픽 허용"
        network                 = "${local.network_path}"
        direction               = "EGRESS"
        priority                = "60000"
@@ -59,8 +59,8 @@ module "firewall_rules" {
      },
 
     {
-       name                    = "${local.pre_fix}-host-sec-googleapi-out-allow"
-       description             = "[SEC-${var.project_name}-FW-Rule] - VPC의 VM에서 Google Cloud API 호출을 위한 Egress IP 대역 허용"      
+       name                    = "${local.pre_fix}-fw-googleapi-out-allow"
+       description             = "[${var.project_name}-FW-Rule] - VPC의 VM에서 Google Cloud API 호출을 위한 Egress IP 대역 허용"      
        network                 = "${local.network_path}"
        direction               = "EGRESS"
        priority                = "1000"
@@ -80,8 +80,8 @@ module "firewall_rules" {
      },
 
     {
-       name                    = "${local.pre_fix}-host-sec-healthcheck-in-allow"
-       description             = "[SEC-${var.project_name}-FW-Rule] - k8s-pod-healthcheck"      
+       name                    = "${local.pre_fix}-fw-healthcheck-in-allow"
+       description             = "[${var.project_name}-FW-Rule] - k8s-pod-healthcheck"      
        network                 = "${local.network_path}"
        direction               = "INGRESS"
        priority                = "1000"
@@ -101,8 +101,8 @@ module "firewall_rules" {
      },
 
     {
-       name                    = "${local.pre_fix}-host-sec-ipa-out-allow"
-       description             = "[SEC-${var.project_name}-FW-Rule] - IPA 연동을 위한 Egress 통신 허용"      
+       name                    = "${local.pre_fix}-fw-ipa-out-allow"
+       description             = "[${var.project_name}-FW-Rule] - IPA 연동을 위한 Egress 통신 허용"      
        network                 = "${local.network_path}"
        direction               = "EGRESS"
        priority                = "1000"
@@ -126,8 +126,8 @@ module "firewall_rules" {
      },     
 
     {
-       name                    = "${local.pre_fix}-host-sec-gw-in-allow-2022"
-       description             = "[SEC-${var.project_name}-FW-Rule] - 사업장에서 Gateway VM SSH 접속 Ingress 통신허용"
+       name                    = "${local.pre_fix}-fw-gw-in-allow-2022"
+       description             = "[${var.project_name}-FW-Rule] - 사업장에서 Gateway VM SSH 접속 Ingress 통신허용"
        network                 = "${local.network_path}"
        direction               = "INGRESS"
        priority                = "1000"
@@ -147,8 +147,8 @@ module "firewall_rules" {
      },  
 
     {
-       name                    = "${local.pre_fix}-host-sec-dbgw-in-allow-2022"
-       description             = "[SEC-${var.project_name}-FW-Rule] - SBC 환경에서 Data Gateway VM SSH 접속 Ingress 통신 허용 (35.190.238.77/32 IPA Webshell)"
+       name                    = "${local.pre_fix}-fw-dbgw-in-allow-2022"
+       description             = "[${var.project_name}-FW-Rule] - SBC 환경에서 Data Gateway VM SSH 접속 Ingress 통신 허용 (35.190.238.77/32 IPA Webshell)"
        network                 = "${local.network_path}"
        direction               = "INGRESS"
        priority                = "1000"
@@ -168,8 +168,8 @@ module "firewall_rules" {
      },       
   
     {
-       name                    = "${local.pre_fix}-host-sec-ssh-out-allow-20022"
-       description             = "[SEC-${var.project_name}-FW-Rule] - Data Gateway VM에서 VM 으로 SSH(20022) Engrss 통신 허용"
+       name                    = "${local.pre_fix}-fw-ssh-out-allow-20022"
+       description             = "[${var.project_name}-FW-Rule] - Data Gateway VM에서 VM 으로 SSH(20022) Engrss 통신 허용"
        network                 = "${local.network_path}"
        direction               = "EGRESS"
        priority                = "1000"
@@ -189,8 +189,8 @@ module "firewall_rules" {
      },   
 
     {
-       name                    = "${local.pre_fix}-host-sec-ssh-in-allow-20022"
-       description             = "[SEC-${var.project_name}-FW-Rule] - VM 에서 Gateway 의 SSH 접근 Ingress 허용"
+       name                    = "${local.pre_fix}-fw-ssh-in-allow-20022"
+       description             = "[${var.project_name}-FW-Rule] - VM 에서 Gateway 의 SSH 접근 Ingress 허용"
        network                 = "${local.network_path}"
        direction               = "INGRESS"
        priority                = "1000"
@@ -210,8 +210,8 @@ module "firewall_rules" {
      },   
 
     {
-       name                    = "${local.pre_fix}-host-sec-db-ssh-in-allow-20022"
-       description             = "[SEC-${var.project_name}-FW-Rule] - CLI VM 에서 Data Gateway VM의 SSH(20022) Ingress 통신 허용"
+       name                    = "${local.pre_fix}-fw-db-ssh-in-allow-20022"
+       description             = "[${var.project_name}-FW-Rule] - CLI VM 에서 Data Gateway VM의 SSH(20022) Ingress 통신 허용"
        network                 = "${local.network_path}"
        direction               = "INGRESS"
        priority                = "1000"
